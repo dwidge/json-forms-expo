@@ -1,7 +1,7 @@
 import { File2 } from "../types/File2.js";
 import { createApi } from "./createApi.js";
 
-export const FileApi = createApi<File2>({
+export const FileApi = createApi<File2>("File", {
   id: undefined,
   createdAt: undefined,
   createdBy: undefined,

@@ -5,6 +5,7 @@ import { useParams } from "./useParams";
 export type ApiItem = Record<string, string | number | boolean | null>;
 
 export const createApi = <T extends ApiItem>(
+  name: string,
   defaultFilter: Partial<T> = {},
 ) => {
   type Get = Partial<T>;
@@ -22,34 +23,39 @@ export const createApi = <T extends ApiItem>(
   deleteItem: (item: Key) => Promise<Key | null>;
 
   const message =
-    "createApiW1: Please wrap App with <Context.Provider value={{}}></Context.Provider>";
+    name +
+    ": createApiW1: Please wrap App with <Context.Provider value={{}}></Context.Provider>";
 
   const Context = createContext<{
     useGetList: (filter?: Filter) => undefined | Get[];
     useCreateList: () => ((list: Set[]) => Promise<(Get | null)[]>) | undefined;
     useDeleteList: () => ((list: Key[]) => Promise<(Get | null)[]>) | undefined;
-    useGetItem: (key?: Filter & Key) => undefined | Get | null;
-    useItem: (key?: Get) => AsyncState<Get | null>;
+    useGetItem: (filter?: Filter) => undefined | Get | null;
+    useItem: (filter?: Filter) => AsyncState<Get | null>;
   }>({
-    useGetList: () => (console.warn(message), undefined),
-    useCreateList: () => (console.warn(message), undefined),
-    useDeleteList: () => (console.warn(message), undefined),
-    useGetItem: () => (console.warn(message), undefined),
-    useItem: () => (console.warn(message), []),
+    useGetList: () => (console.warn("useGetList1: " + message), undefined),
+    useCreateList: () => (
+      console.warn("useCreateList1: " + message), undefined
+    ),
+    useDeleteList: () => (
+      console.warn("useDeleteList1: " + message), undefined
+    ),
+    useGetItem: () => (console.warn("useGetItem1: " + message), undefined),
+    useItem: () => (console.warn("useItem1: " + message), []),
   });
 
-  const useGetList = (filter: Filter = {}, ids = useParams()) =>
-    useContext(Context).useGetList({ ...ids, ...defaultFilter, ...filter });
+  const useGetList = (filter?: Filter) =>
+    useContext(Context).useGetList({ ...defaultFilter, ...filter });
   const useCreateList = () => useContext(Context).useCreateList();
   const useDeleteList = () => useContext(Context).useDeleteList();
-  const useGetItem = (id?: Key["id"] | null, ids = useParams()) =>
+  const useGetItem = (filter?: Filter) =>
     useContext(Context).useGetItem(
-      id ? { ...ids, ...defaultFilter, id } : undefined,
+      filter ? { ...defaultFilter, ...filter } : undefined,
     );
-  const useItem = (id?: Key["id"] | null, ids = useParams()) =>
+  const useItem = (filter?: Filter) =>
     useAsyncSaveState(
       useContext(Context).useItem(
-        id ? { ...ids, ...defaultFilter, id } : undefined,
+        filter ? { ...defaultFilter, ...filter } : undefined,
       ),
     );
 

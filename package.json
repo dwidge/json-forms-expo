@@ -40,7 +40,7 @@
     "@dwidge/query-axios-zod": "^0.0.13",
     "@dwidge/react-native-web-webview": "^0.0.4",
     "@dwidge/utils-js": "^0.0.11",
-    "@dwidge/wmdb-expo": "^0.0.4",
+    "@dwidge/wmdb-expo": "^0.0.5",
     "@dwidge/wmdb-expo-web": "^0.0.4",
     "@jsonforms/core": "^3.4.0",
     "@jsonforms/react": "^3.4.0",
