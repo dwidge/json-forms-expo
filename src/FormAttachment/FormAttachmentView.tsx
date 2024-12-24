@@ -7,14 +7,14 @@ import { StyledLoader, StyledText, StyledView } from "@dwidge/components-rnw";
 import { FormApi } from "../hooks/FormApi";
 import { FormAttachmentApi } from "../hooks/FormAttachmentApi";
 import { useParams } from "../hooks/useParams";
-import { useIdFilter } from "../hooks";
+import { filterId } from "../hooks";
 
 export const FormAttachmentView = ({
   id = useParams().FormAttachmentId,
   attachment: [attachment, setAttachment] = FormAttachmentApi.useItem(
-    useIdFilter(id),
+    filterId(id),
   ),
-  form = FormApi.useGetItem(useIdFilter(attachment?.FormId)),
+  form = FormApi.useGetItem(filterId(attachment?.FormId)),
 }) =>
   attachment && form ? (
     <StyledView space outline gap pad flex>

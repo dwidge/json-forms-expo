@@ -16,10 +16,10 @@ import {
 } from "@dwidge/json-forms-designer";
 import { FormApi } from "../hooks/FormApi";
 import { useParams } from "../hooks/useParams";
-import { useIdFilter } from "../hooks";
+import { filterId } from "../hooks";
 
 export const FormEditScreen = ({
-  form: [form, setForm] = FormApi.useItem(useIdFilter(useParams().FormId)),
+  form: [form, setForm] = FormApi.useItem(filterId(useParams().FormId)),
 }) => (
   <ScreenView>
     <StyledHeader title={["Form", form?.name].filter(Boolean).join(" - ")} />

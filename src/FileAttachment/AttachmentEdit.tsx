@@ -6,10 +6,10 @@ import { FileEdit } from "@dwidge/components-expo";
 import { FileApi } from "../hooks/FileApi";
 import { FileAttachmentApi } from "../hooks/FileAttachmentApi";
 import { useParams } from "../hooks/useParams";
-import { useIdFilter } from "../hooks/useIdFilter";
+import { filterId } from "../hooks/useIdFilter";
 
 export const AttachmentEdit = ({
   id = useParams().AttachmentId,
-  attachment: [attachment] = FileAttachmentApi.useItem(useIdFilter(id)),
-  file: [file, setFile] = FileApi.useItem(useIdFilter(attachment?.FileId)),
+  attachment: [attachment] = FileAttachmentApi.useItem(filterId(id)),
+  file: [file, setFile] = FileApi.useItem(filterId(attachment?.FileId)),
 }) => <FileEdit file={[file, setFile]} />;

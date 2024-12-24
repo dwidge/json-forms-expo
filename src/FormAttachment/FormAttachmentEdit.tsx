@@ -16,7 +16,7 @@ import { FormAttachmentApi } from "../hooks/FormAttachmentApi";
 import { FormsContext } from "../hooks/FormsContext";
 import { useParams } from "../hooks/useParams";
 import { FormAttachment1 } from "../types/FormAttachment";
-import { useIdFilter } from "../hooks";
+import { filterId } from "../hooks";
 
 type T = FormAttachment1 | null | undefined;
 export const FormAttachmentEdit = ({
@@ -24,8 +24,8 @@ export const FormAttachmentEdit = ({
   formAttachment: [
     formAttachment,
     setFormAttachment,
-  ] = FormAttachmentApi.useItem(useIdFilter(id)),
-  form = FormApi.useGetItem(useIdFilter(formAttachment?.FormId)),
+  ] = FormAttachmentApi.useItem(filterId(id)),
+  form = FormApi.useGetItem(filterId(formAttachment?.FormId)),
   onEditForm = useNavAction2(
     useContext(FormsContext).routes.FORM_EDIT_SCREEN,
     async (key: string) => ({
