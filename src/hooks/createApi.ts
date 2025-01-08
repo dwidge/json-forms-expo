@@ -1,6 +1,5 @@
-import { AsyncState, useAsyncSaveState } from "@dwidge/hooks-react";
+import { AsyncState } from "@dwidge/hooks-react";
 import { createContext, useContext } from "react";
-import { useParams } from "./useParams";
 
 export type ApiItem = Record<string, string | number | boolean | null>;
 
@@ -53,10 +52,8 @@ export const createApi = <T extends ApiItem>(
       filter ? { ...defaultFilter, ...filter } : undefined,
     );
   const useItem = (filter?: Filter) =>
-    useAsyncSaveState(
-      useContext(Context).useItem(
-        filter ? { ...defaultFilter, ...filter } : undefined,
-      ),
+    useContext(Context).useItem(
+      filter ? { ...defaultFilter, ...filter } : undefined,
     );
 
   return {

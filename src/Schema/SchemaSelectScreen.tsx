@@ -11,38 +11,33 @@ import {
 } from "@dwidge/components-rnw";
 import { useNavAction2 } from "@dwidge/hooks-expo";
 import { StyledButton } from "@dwidge/components-rnw";
-import { FormSelectView } from "./FormSelectView";
+import { SchemaSelectView } from "./SchemaSelectView";
 import { useNavRoutes } from "../hooks/FormsContext";
 import { StyledHeader } from "@dwidge/components-expo";
-import { useCreateBlankFormAttachment } from "../hooks/useCreateBlankFormAttachment";
+import { useCreateBlankForm } from "../hooks";
 
-const useOnSelectForm = () =>
-  useNavAction2(
-    useNavRoutes().FORM_ATTACHMENT_EDIT_SCREEN,
-    useCreateBlankFormAttachment({}),
-  );
+const useOnSelectSchema = () =>
+  useNavAction2(useNavRoutes().FORM_EDIT_SCREEN, useCreateBlankForm({}));
 
-export const FormSelectScreen = ({
-  onSelectForm = useOnSelectForm(),
+export const SchemaSelectScreen = ({
+  onSelectSchema = useOnSelectSchema(),
   selected: [selected, setSelected] = useState<string[]>([]),
 }) => (
   <ScreenView>
-    <StyledHeader title="Select Form" />
+    <StyledHeader title="Select Schema" />
     <ScrollView gap pad>
       <StyledView>
-        <StyledText center>
-          Select from the list of forms below, or use the search option above.
-        </StyledText>
+        <StyledText center>Select one or more</StyledText>
       </StyledView>
-      <FormSelectView selected={[selected, setSelected]} />
+      <SchemaSelectView selected={[selected, setSelected]} />
       <StyledButton
         onPress={
-          selected.length > 0 && onSelectForm
-            ? () => onSelectForm(selected.map((id) => ({ id })))
+          selected.length > 0 && onSelectSchema
+            ? () => onSelectSchema(selected.map((id) => ({ id })))
             : undefined
         }
       >
-        Select Form
+        Select Schema
       </StyledButton>
     </ScrollView>
   </ScreenView>

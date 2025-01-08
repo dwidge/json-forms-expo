@@ -1,10 +1,10 @@
 import assert from "assert";
 import { useParams } from "./useParams";
 import { FileApi } from "./FileApi";
-import { FileAttachmentApi } from "./FileAttachmentApi";
+import { AttachmentApi } from "./AttachmentApi";
 
 export const useCreateBlankAttachment = ({
-  createAttachmentList = FileAttachmentApi.useCreateList(),
+  createAttachmentList = AttachmentApi.useCreateList(),
   createFileList = FileApi.useCreateList(),
   AttachIds = useParams(),
 } = {}) =>

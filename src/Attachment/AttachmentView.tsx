@@ -4,12 +4,12 @@
 
 import { useIdStringParam } from "@dwidge/hooks-expo";
 import { FileView } from "@dwidge/components-expo";
-import { FileAttachmentApi } from "../hooks/FileAttachmentApi";
+import { AttachmentApi } from "../hooks/AttachmentApi";
 import { FileApi } from "../hooks/FileApi";
 import { filterId } from "../hooks/useIdFilter";
 
 export const AttachmentView = ({
   id = useIdStringParam(),
-  attachment: [attachment] = FileAttachmentApi.useItem(filterId(id)),
+  attachment: [attachment] = AttachmentApi.useItem(filterId(id)),
   file: [file, setFile] = FileApi.useItem(filterId(attachment?.FileId)),
 }) => <FileView file={[file, setFile]} />;

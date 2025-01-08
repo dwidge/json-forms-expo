@@ -8,47 +8,52 @@ import {
   ScreenView,
   ScrollView,
   StyledFontAwesome,
-  StyledView,
 } from "@dwidge/components-rnw";
+import { useNavAction2 } from "@dwidge/hooks-expo";
 import { useMemoState } from "@dwidge/hooks-react";
 import { TouchableOpacity } from "react-native";
 import { FormApi } from "../hooks/FormApi";
+import { useNavRoutes } from "../hooks/FormsContext";
 import { FormListEdit } from "./FormListEdit";
-import { useCreateBlankForm } from "../hooks/useCreateBlankForm";
 
 export const FormListScreen = ({
-  onCreate = useCreateBlankForm(),
-  onDeleteList = FormApi.useDeleteList(),
+  createForm = useNavAction2(
+    useNavRoutes().SCHEMA_SELECT_SCREEN,
+    async () => ({}),
+  ),
+  editForm = useNavAction2(
+    useNavRoutes().FORM_EDIT_SCREEN,
+    async (key: string) => ({
+      FormId: key,
+    }),
+  ),
+  deleteFormList = FormApi.useDeleteList(),
   selection = useMemoState<string[]>([]),
 }) => (
   <ScreenView>
     <StyledHeader
-      title="Forms"
+      title="Manage Forms"
       actions={[
         {
           icon: "remove-circle",
           onPress:
-            onDeleteList && selection[0].length
-              ? () => onDeleteList(selection[0].map((id) => ({ id })))
+            deleteFormList && selection[0].length
+              ? () => deleteFormList(selection[0].map((id) => ({ id })))
               : undefined,
         },
         {
           icon: "add-circle",
-          onPress: onCreate,
+          onPress: createForm,
         },
       ]}
     />
-    <ScrollView gap pad>
-      <StyledView flex column>
-        <StyledView>
-          <FormListEdit selection={selection} />
-        </StyledView>
-        <TouchableOpacity style={{ flex: 1 }} onPress={onCreate}>
-          <CenterView row gap>
-            <StyledFontAwesome name="plus" size={30} />
-          </CenterView>
-        </TouchableOpacity>
-      </StyledView>
+    <ScrollView gap>
+      <FormListEdit selection={selection} onPress={editForm} />
+      <TouchableOpacity style={{ flex: 1 }} onPress={createForm}>
+        <CenterView row gap>
+          <StyledFontAwesome name="plus" size={30} />
+        </CenterView>
+      </TouchableOpacity>
     </ScrollView>
   </ScreenView>
 );

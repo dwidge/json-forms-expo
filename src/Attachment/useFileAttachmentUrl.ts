@@ -3,7 +3,7 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 import { FileApi } from "../hooks/FileApi";
-import { FileAttachmentApi } from "../hooks/FileAttachmentApi";
+import { AttachmentApi } from "../hooks/AttachmentApi";
 import { filterId } from "../hooks/useIdFilter";
 
 export const useFileAttachmentUrl = (
@@ -11,6 +11,6 @@ export const useFileAttachmentUrl = (
 ): string | null | undefined => useFileAttachmentUrlInternal(attachmentId);
 const useFileAttachmentUrlInternal = (
   attachmentId?: string,
-  attachment = FileAttachmentApi.useGetItem(filterId(attachmentId)),
+  attachment = AttachmentApi.useGetItem(filterId(attachmentId)),
   file = FileApi.useGetItem(filterId(attachment?.FileId)),
 ) => file?.getUrl;

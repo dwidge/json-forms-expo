@@ -8,16 +8,16 @@ import { z } from "zod";
 
 export const FormsContext = createContext({
   routes: {
-    FORM_ATTACHMENT_LIST_SCREEN: "",
-    FORM_ATTACHMENT_EDIT_SCREEN: "",
+    FORM_LIST_SCREEN: "",
     FORM_EDIT_SCREEN: "",
-    FORM_SELECT_SCREEN: "",
+    SCHEMA_EDIT_SCREEN: "",
+    SCHEMA_SELECT_SCREEN: "",
   },
   useParams: () =>
     z
       .object({
         FormId: z.coerce.string().nullable(),
-        FormAttachmentId: z.coerce.string().nullable(),
+        SchemaId: z.coerce.string().nullable(),
         AttachmentId: z.coerce.string().nullable(),
       })
       .partial()

@@ -3,53 +3,20 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 import { StyledHeader } from "@dwidge/components-expo";
-import {
-  CenterView,
-  ScreenView,
-  ScrollView,
-  StyledText,
-} from "@dwidge/components-rnw";
-import {
-  defaultFormSchemaString,
-  FormDesigner,
-  FormSchema,
-} from "@dwidge/json-forms-designer";
+import { ScreenView, ScrollView } from "@dwidge/components-rnw";
+import { SchemaApi } from "../hooks/SchemaApi";
 import { FormApi } from "../hooks/FormApi";
-import { useParams } from "../hooks/useParams";
-import { filterId } from "../hooks";
+import { FormEdit } from "./FormEdit";
+import { filterId, useParams } from "../hooks";
 
 export const FormEditScreen = ({
-  form: [form, setForm] = FormApi.useItem(filterId(useParams().FormId)),
+  form = FormApi.useGetItem(filterId(useParams().FormId)),
+  schema = SchemaApi.useGetItem(filterId(form?.SchemaId)),
 }) => (
   <ScreenView>
-    <StyledHeader title={["Form", form?.name].filter(Boolean).join(" - ")} />
-    {form == null || !form ? (
-      <CenterView>
-        <StyledText>
-          {form === null ? "The form does not exist." : "Loading..."}
-        </StyledText>
-      </CenterView>
-    ) : (
-      <ScrollView flex gap wide pad selfcenter>
-        <FormDesigner
-          schemaString={[
-            form.schema ?? defaultFormSchemaString,
-            setForm &&
-              ((updater) => {
-                const next =
-                  typeof updater === "function"
-                    ? updater(form.schema ?? defaultFormSchemaString)
-                    : updater;
-                const parsed = FormSchema.parse(JSON.parse(next));
-                setForm?.((prev) => ({
-                  ...prev,
-                  name: parsed.schema.title,
-                  schema: next,
-                }));
-              }),
-          ]}
-        />
-      </ScrollView>
-    )}
+    <StyledHeader title={["Form", schema?.name].filter(Boolean).join(" - ")} />
+    <ScrollView flex gap pad>
+      <FormEdit />
+    </ScrollView>
   </ScreenView>
 );

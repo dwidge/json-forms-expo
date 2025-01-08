@@ -3,9 +3,8 @@ export type Form1 = {
   created: boolean;
   createdAt: number;
   createdBy: number | null;
-  name: string | null;
-  type: string | null;
-  schema: string | null;
+  SchemaId: string | null;
+  data: string | null;
 };
 
 export type Form1Get = Partial<Form1>;

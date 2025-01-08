@@ -5,7 +5,6 @@ export const FormApi = createApi<Form1>("Form", {
   id: undefined,
   createdAt: undefined,
   createdBy: undefined,
-  name: undefined,
-  type: undefined,
-  schema: undefined,
+  SchemaId: undefined,
+  data: undefined,
 });

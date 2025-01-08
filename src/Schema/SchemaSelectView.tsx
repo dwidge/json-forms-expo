@@ -4,17 +4,17 @@
 
 import { StyledButton } from "@dwidge/components-rnw";
 import { ReactNode, useState } from "react";
-import { FormApi } from "../hooks/FormApi";
-import { FormListView } from "./FormListView";
+import { SchemaApi } from "../hooks/SchemaApi";
+import { SchemaListView } from "./SchemaListView";
 
-export const FormSelectView = ({
-  formList = FormApi.useGetList(),
+export const SchemaSelectView = ({
+  formList = SchemaApi.useGetList(),
   selected: [selected, setSelected] = useState<string[]>([]),
   searchValue: [searchValue, setSearchValue] = useState(""),
-  createFormList = FormApi.useCreateList(),
+  createSchemaList = SchemaApi.useCreateList(),
 }): ReactNode => (
   <>
-    <FormListView
+    <SchemaListView
       elements={
         searchValue
           ? formList?.filter((form) =>
@@ -24,8 +24,8 @@ export const FormSelectView = ({
       }
       selection={[selected, setSelected]}
     />
-    <StyledButton onPress={createFormList && (() => createFormList([{}]))}>
-      Create New Form
+    <StyledButton onPress={createSchemaList && (() => createSchemaList([{}]))}>
+      Create New Schema
     </StyledButton>
   </>
 );

@@ -76,21 +76,21 @@ const Form = z.object({
   schema: JsonFormSchema,
 });
 
-export const EditFormAttachmentScreen = ({
+export const EditSchemaScreen = ({
   form: [form, setForm] = useForm(useFormId()),
 }) => (
   <ScreenView>
-    <StyledHeader title="Edit Form" />
+    <StyledHeader title="Edit Schema" />
     {form == null || !form ? (
       <CenterView>
         <StyledText>
-          {form === null ? "The form does not exist." : "Loading..."}
+          {form === null ? "The form schema does not exist." : "Loading..."}
         </StyledText>
       </CenterView>
     ) : (
       <ScrollView flex gap wide pad selfcenter>
         <JSONSchemaForm
-          name="FormSchema"
+          name="Schema"
           schema={formSchema}
           value={form}
           onChange={setForm}

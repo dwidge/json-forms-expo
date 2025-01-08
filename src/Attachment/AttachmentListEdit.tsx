@@ -10,17 +10,17 @@ import {
 } from "@dwidge/components-rnw";
 import assert from "assert";
 import { useState } from "react";
-import { FileAttachmentApi } from "../hooks/FileAttachmentApi";
+import { AttachmentApi } from "../hooks/AttachmentApi";
 import { useCreateBlankAttachment } from "../hooks/useCreateBlankAttachment";
 import { Params, useParams } from "../hooks/useParams";
 import { AttachmentEdit } from "./AttachmentEdit";
 
 export const AttachmentListEdit = ({
   ids = useParams() as Params,
-  elements = FileAttachmentApi.useGetList(ids),
+  elements = AttachmentApi.useGetList(ids),
   selection: [selection, setSelection] = useState<string[]>([]),
   onCreateAttachment = useCreateBlankAttachment({ AttachIds: ids }),
-  onDeleteAttachmentList = FileAttachmentApi.useDeleteList(),
+  onDeleteAttachmentList = AttachmentApi.useDeleteList(),
 }) => (
   <StyledView column>
     <UnstyledList
