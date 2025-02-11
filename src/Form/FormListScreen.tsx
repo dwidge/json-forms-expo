@@ -5,6 +5,7 @@
 import { StyledHeader } from "@dwidge/components-expo";
 import {
   CenterView,
+  IconButton,
   ScreenView,
   ScrollView,
   StyledFontAwesome,
@@ -34,17 +35,15 @@ export const FormListScreen = ({
     <StyledHeader
       title="Manage Forms"
       actions={[
-        {
-          icon: "remove-circle",
-          onPress:
+        <IconButton
+          icon="remove-circle"
+          onPress={
             deleteFormList && selection[0].length
               ? () => deleteFormList(selection[0].map((id) => ({ id })))
-              : undefined,
-        },
-        {
-          icon: "add-circle",
-          onPress: createForm,
-        },
+              : undefined
+          }
+        />,
+        <IconButton icon="add-circle" onPress={createForm} />,
       ]}
     />
     <ScrollView gap>

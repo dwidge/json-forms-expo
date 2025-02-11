@@ -5,6 +5,7 @@
 import { StyledHeader } from "@dwidge/components-expo";
 import {
   CenterView,
+  IconButton,
   ScreenView,
   ScrollView,
   StyledFontAwesome,
@@ -25,17 +26,15 @@ export const SchemaListScreen = ({
     <StyledHeader
       title="Schemas"
       actions={[
-        {
-          icon: "remove-circle",
-          onPress:
+        <IconButton
+          icon="remove-circle"
+          onPress={
             onDeleteList && selection[0].length
               ? () => onDeleteList(selection[0].map((id) => ({ id })))
-              : undefined,
-        },
-        {
-          icon: "add-circle",
-          onPress: onCreate,
-        },
+              : undefined
+          }
+        />,
+        <IconButton icon="add-circle" onPress={onCreate} />,
       ]}
     />
     <ScrollView gap pad>
