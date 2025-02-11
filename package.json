@@ -1,6 +1,6 @@
 {
   "name": "@dwidge/json-forms-expo",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Editor for Json Forms.",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "@dwidge/hooks-expo": "^0.0.14",
     "@dwidge/hooks-react": "^0.0.10",
     "@dwidge/json-forms-designer": "^0.0.12",
-    "@dwidge/json-schema-form-rnw": "^0.0.13",
+    "@dwidge/json-schema-form-rnw": "^0.0.14",
     "@dwidge/query-axios-zod": "^0.0.14",
     "@dwidge/react-native-web-webview": "^0.0.4",
     "@dwidge/utils-js": "^0.0.14",
