@@ -36,14 +36,14 @@ export const FormListScreen = ({
       title="Manage Forms"
       actions={[
         <IconButton
-          icon="remove-circle"
+          name="remove-circle"
           onPress={
             deleteFormList && selection[0].length
               ? () => deleteFormList(selection[0].map((id) => ({ id })))
               : undefined
           }
         />,
-        <IconButton icon="add-circle" onPress={createForm} />,
+        <IconButton name="add-circle" onPress={createForm} />,
       ]}
     />
     <ScrollView gap>

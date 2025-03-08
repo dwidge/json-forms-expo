@@ -27,14 +27,14 @@ export const SchemaListScreen = ({
       title="Schemas"
       actions={[
         <IconButton
-          icon="remove-circle"
+          name="remove-circle"
           onPress={
             onDeleteList && selection[0].length
               ? () => onDeleteList(selection[0].map((id) => ({ id })))
               : undefined
           }
         />,
-        <IconButton icon="add-circle" onPress={onCreate} />,
+        <IconButton name="add-circle" onPress={onCreate} />,
       ]}
     />
     <ScrollView gap pad>
