@@ -1,6 +1,6 @@
 {
   "name": "@dwidge/json-forms-expo",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Editor for Json Forms.",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "@dwidge/json-forms-paper": "^0.0.10",
     "@dwidge/trace-js": "^0.0.11",
     "@dwidge/axios-interceptor": "^0.0.4",
-    "@dwidge/components-expo": "^0.0.42",
+    "@dwidge/components-expo": "^0.0.43",
     "@dwidge/components-rnw": "^0.0.29",
     "@dwidge/crud-api-react": "^0.0.36",
     "@dwidge/hooks-expo": "^0.0.34",
