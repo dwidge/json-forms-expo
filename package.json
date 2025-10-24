@@ -1,6 +1,6 @@
 {
   "name": "@dwidge/json-forms-expo",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "Editor for Json Forms.",
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "@dwidge/query-axios-zod": "^0.0.18",
     "@dwidge/react-native-web-webview": "^0.0.7",
     "@dwidge/utils-js": "^0.0.26",
-    "@dwidge/wmdb-expo": "^0.0.43",
+    "@dwidge/wmdb-expo": "^0.0.44",
     "@dwidge/wmdb-expo-web": "^0.0.9",
     "@jsonforms/core": "^3.4.0",
     "@jsonforms/react": "^3.4.0",
